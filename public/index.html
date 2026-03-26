@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#0a0a0f">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>韻辞書 - 育てる韻の辞書</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>韻辞書</h1>
+    <p>育てる韻の辞書</p>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab-btn active" data-tab="register">登録</button>
+    <button class="tab-btn" data-tab="dictionary">辞書</button>
+    <button class="tab-btn" data-tab="search">逆引き</button>
+    <button class="tab-btn" data-tab="favorites">お気に入り</button>
+  </nav>
+
+  <div class="container">
+
+    <!-- Register Panel -->
+    <div id="panel-register" class="panel active">
+      <div class="form-group">
+        <label>漢字 / 表記</label>
+        <input type="text" id="input-kanji" placeholder="例: 未来">
+      </div>
+      <div class="form-group">
+        <label>読み（ひらがな）</label>
+        <input type="text" id="input-reading" placeholder="例: みらい">
+      </div>
+
+      <div id="live-preview" class="preview-box" style="display:none">
+        <div>ローマ字: <span class="romaji" id="preview-romaji"></span></div>
+        <div>母音パターン: <span class="vowels" id="preview-vowels"></span></div>
+      </div>
+
+      <div class="form-group">
+        <label>タグ（任意）</label>
+        <div class="tag-list" id="tag-list"></div>
+      </div>
+
+      <button class="btn btn-primary" id="btn-register" style="width:100%;margin-top:0.5rem">
+        韻を登録する
+      </button>
+    </div>
+
+    <!-- Dictionary Panel -->
+    <div id="panel-dictionary" class="panel">
+      <div class="filter-bar">
+        <input type="search" id="dict-search" placeholder="検索...">
+        <select id="dict-tag-filter" style="padding:0.7rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);color:var(--text);font-size:0.9rem">
+          <option value="">全タグ</option>
+        </select>
+      </div>
+      <div id="dict-count" style="color:var(--text-dim);font-size:0.85rem;margin-bottom:0.5rem"></div>
+      <div id="word-list" class="word-grid"></div>
+    </div>
+
+    <!-- Search Panel (Reverse Lookup) -->
+    <div id="panel-search" class="panel">
+      <div class="form-group">
+        <label>韻を探したい言葉の読み（ひらがな）</label>
+        <input type="text" id="search-reading" placeholder="例: みらい">
+      </div>
+      <button class="btn btn-primary" id="btn-search" style="width:100%">韻を検索</button>
+      <div id="search-info" style="margin-top:1rem"></div>
+      <div id="search-results" class="word-grid" style="margin-top:0.5rem"></div>
+    </div>
+
+    <!-- Favorites Panel -->
+    <div id="panel-favorites" class="panel">
+      <div id="fav-list"></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
